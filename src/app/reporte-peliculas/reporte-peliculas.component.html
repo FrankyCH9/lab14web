@@ -1,0 +1,33 @@
+<div class="container">
+  <h2>Informe de Películas</h2>
+
+  <div>
+    <label for="filtroGenero">Filtrar por género:</label>
+    <select id="filtroGenero" [(ngModel)]="filtroGenero" (change)="aplicarFiltros()">
+      <option value="">Todos</option>
+      <option *ngFor="let genero of generos" [value]="genero">{{ genero }}</option>
+    </select>
+  </div>
+
+  <button (click)="generarPDF()">Generar PDF</button>
+  <button (click)="generarExcel()">Generar Excel</button>
+
+  <table *ngIf="peliculasFiltradas.length > 0">
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Género</th>
+        <th>Año de lanzamiento</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pelicula of peliculasFiltradas">
+        <td>{{ pelicula.titulo }}</td>
+        <td>{{ pelicula.genero }}</td>
+        <td>{{ pelicula.lanzamiento }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p *ngIf="peliculasFiltradas.length === 0">No se encontraron películas que cumplan con los filtros seleccionados.</p>
+</div>
